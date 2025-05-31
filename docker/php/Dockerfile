@@ -1,6 +1,5 @@
 FROM php:7.4.9-fpm
 
-
 COPY php.ini /usr/local/etc/php/
 
 RUN apt update \
@@ -12,14 +11,3 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && composer self-update
 
 WORKDIR /var/www
-
-FROM ubuntu:latest
-RUN apt-get update && apt-get install -y \
-    sudo \
-    && rm -rf /var/lib/apt/lists/*
-RUN useradd -m -s /bin/bash yuikos
-RUN echo "yuikos ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-WORKDIR /home/yuikos
-
-USER yuikos
